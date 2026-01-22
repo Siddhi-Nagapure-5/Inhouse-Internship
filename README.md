@@ -22,3 +22,20 @@ Research-oriented
 Industry-aligned
 
 Perfect for Dataverse Lab
+
+Architecture Process
+
+Incoming Data
+      ↓
+Schema Validation
+      ↓
+Statistical Validation
+      ↓
+Drift Detection
+      ↓
+Validation Report
+      ↓
+Deployment Gate
+   ↓         ↓
+BLOCK     ALLOW
+
