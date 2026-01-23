@@ -39,3 +39,7 @@ Deployment Gate
    ↓         ↓
 BLOCK     ALLOW
 
+Finalized Problem Statement
+
+Data Validation Pipelines for ML Deployment Readiness:
+Designing and implementing a lightweight, interpretable data validation pipeline that ensures incoming data is structurally consistent, statistically reliable, and distributionally aligned with training data before being passed to deployed machine learning models.
