@@ -57,3 +57,19 @@ Few works provide a simple, unified, and reproducible validation pipeline suitab
 Machine learning (ML) systems are increasingly deployed in real-world applications such as healthcare, finance, e-commerce, and recommendation systems. While significant research has focused on improving model architectures and training algorithms, recent studies highlight that data-related issues are a primary cause of ML system failures in production. Even highly accurate models can produce unreliable or unsafe predictions when exposed to poor-quality or unexpected input data during deployment.
 
 The literature emphasizes that training data and production data often differ due to changes in data sources, user behavior, system updates, or environmental conditions. These differences can lead to schema mismatches, missing values, invalid feature ranges, and distributional drift. As a result, ensuring data integrity and consistency before model inference has become a critical requirement for deployment-ready ML systems.
+Existing Approaches to Data Validation in ML Systems
+2.1 Rule-Based and Schema Validation Methods
+
+Early approaches to data validation rely on manually defined rules such as data type checks, range constraints, and null-value detection. These methods are simple to implement and are commonly used in traditional data pipelines. However, literature reports that rule-based systems are brittle and hard to maintain, especially when data schemas evolve frequently.
+
+2.2 Statistical Data Validation
+
+Several studies propose statistical profiling techniques that compare summary statistics (mean, variance, minimum, maximum) between training and incoming data. These methods help detect anomalies and inconsistencies that may not violate strict rules but still affect model performance. While statistical validation improves robustness, it often lacks clear interpretability regarding model impact.
+
+2.3 Data Drift Detection Techniques
+
+Data drift detection has been widely studied in the context of deployed ML systems. Common techniques include distribution comparison using distance measures such as Kullback–Leibler divergence, Population Stability Index (PSI), and histogram-based methods. These approaches are effective in identifying changes over time but often generate alerts without actionable explanations.
+
+2.4 Tool-Based Validation Frameworks
+
+Modern ML ecosystems provide dedicated data validation tools such as Great Expectations and TensorFlow Data Validation, which support schema enforcement, statistical checks, and anomaly detection. While these tools are powerful, existing literature notes that they can be complex to configure and are often detached from downstream model performance analysis.
