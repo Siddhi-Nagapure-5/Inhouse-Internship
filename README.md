@@ -73,3 +73,8 @@ Data drift detection has been widely studied in the context of deployed ML syste
 2.4 Tool-Based Validation Frameworks
 
 Modern ML ecosystems provide dedicated data validation tools such as Great Expectations and TensorFlow Data Validation, which support schema enforcement, statistical checks, and anomaly detection. While these tools are powerful, existing literature notes that they can be complex to configure and are often detached from downstream model performance analysis.
+
+
+To address these challenges, data validation pipelines have emerged as a critical component of deployment-ready machine learning systems. Data validation pipelines aim to verify the structural integrity, statistical consistency, and distributional alignment of incoming data before it is passed to deployed models. By detecting and blocking invalid or anomalous data early, these pipelines help ensure model reliability, robustness, and trustworthiness.
+
+This project focuses on the design and implementation of a lightweight and interpretable data validation pipeline that ensures deployment readiness of machine learning systems. The proposed approach emphasizes simplicity, explainability, and reproducibility, making it suitable for individual AI/DS practitioners and academic environments.
