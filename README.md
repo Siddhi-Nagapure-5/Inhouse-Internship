@@ -16,8 +16,7 @@ PS-14: Data Validation Pipelines for ML Deployment Readiness
 This title is:
 
 
-Research-oriented
-
+Research-oriented and with proper imjjj 
 Industry-aligned
 
 Perfect for Dataverse Lab
@@ -78,3 +77,4 @@ Modern ML ecosystems provide dedicated data validation tools such as Great Expec
 To address these challenges, data validation pipelines have emerged as a critical component of deployment-ready machine learning systems. Data validation pipelines aim to verify the structural integrity, statistical consistency, and distributional alignment of incoming data before it is passed to deployed models. By detecting and blocking invalid or anomalous data early, these pipelines help ensure model reliability, robustness, and trustworthiness.
 
 This project focuses on the design and implementation of a lightweight and interpretable data validation pipeline that ensures deployment readiness of machine learning systems. The proposed approach emphasizes simplicity, explainability, and reproducibility, making it suitable for individual AI/DS practitioners and academic environments.
+
