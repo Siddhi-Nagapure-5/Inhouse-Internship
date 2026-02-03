@@ -1,6 +1,6 @@
 ﻿# Inhouse-Internship
 
-Done with Reseraching topics Today and tomorrow going to finalize the final Topic for it.
+Done with Researching topics Today and tomorrow going to finalize the final Topic for it.
 
 Finalizing the Topic Today Tomorrow doing reserach of it.
 
@@ -9,3 +9,4 @@ Finalizing the Topic Today Tomorrow doing reserach of it.
 
 Explainable AutoML Pipeline with Intelligent Data Curation, Provenance Tracking, and
 Cross-Dataset Performance Benchmarking
+
