@@ -12,4 +12,5 @@ Cross-Dataset Performance Benchmarking
 
 Again changed the topic so that two topics can be combined
 
+Handling The Research Part and Intelligent Curation of data with how to enhance data quality for AutoML.
 
