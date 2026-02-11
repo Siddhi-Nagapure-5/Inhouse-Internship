@@ -16,5 +16,6 @@ Handling The Research Part and Intelligent Curation of data with how to enhance 
 
 Learning to clean data.
 
-have performed data quality research and analysis.
+performed data quality research and analysis.
+
 
