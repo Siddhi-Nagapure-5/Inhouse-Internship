@@ -18,5 +18,11 @@ Learning to clean data.
 
 Performed and Handled data quality research and analysis.
 
+Imp Components :-
+Data Engineering and Intelligent Data Curation
+
+AutoML and Model Benchmarking
+
+Explainable AI and Provenance Tracking
 
 
