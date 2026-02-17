@@ -25,4 +25,7 @@ AutoML and Model Benchmarking
 
 Explainable AI and Provenance Tracking
 
+Architecture Flow
+
+Data → Modeling → Trust & Governance
 
