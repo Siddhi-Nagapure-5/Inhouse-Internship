@@ -29,3 +29,10 @@ Architecture Flow
 
 Data → Modeling → Trust & Governance
 
+✅ Authentication — Login/signup page at /auth with email verification, protected routes, and sign-out button in the sidebar.
+
+✅ Interactive UI — Experiments page now has working search, status filter dropdown, and a "New Experiment" dialog that creates real records. Dashboard KPIs pull live counts from your data.
+
+✅ File Uploads — Data Curation page supports drag-and-drop and click-to-upload for dataset files (CSV, Parquet, JSON). Files are stored securely in Cloud storage, and a table shows your uploaded datasets.
+
+✅ Real Profile Management — Settings page loads/saves your actual profile data.
