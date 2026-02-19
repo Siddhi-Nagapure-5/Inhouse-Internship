@@ -35,4 +35,18 @@ Data → Modeling → Trust & Governance
 
 ✅ File Uploads — Data Curation page supports drag-and-drop and click-to-upload for dataset files (CSV, Parquet, JSON). Files are stored securely in Cloud storage, and a table shows your uploaded datasets.
 
+
 ✅ Real Profile Management — Settings page loads/saves your actual profile data.
+
+
+
+
+
+
+Dashboard Overview — KPIs, pipeline flow diagram, experiments table, version quality chart
+Data Curation — Upload panel, quality scores, preprocessing pipeline, schema comparison, drift detection
+AutoML Benchmarking — Leaderboard, radar chart, bar chart, hyperparameter panel
+Provenance & Lineage — Lineage graph, version timeline, dataset metadata
+Explainability — Feature importance, SHAP values, prediction waterfall, confidence gauge
+Experiments — Full experiment tracker with search and filtering
+Settings — Profile, notifications, API keys
