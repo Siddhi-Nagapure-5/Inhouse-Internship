@@ -41,13 +41,3 @@ Data → Modeling → Trust & Governance
 
 
 
-
-
-Dashboard Overview — KPIs, pipeline flow diagram, experiments table, version quality chart \n
-Data Curation — Upload panel, quality scores, preprocessing pipeline, schema comparison, drift detection \n
-AutoML Benchmarking — Leaderboard, radar chart, bar chart, hyperparameter panel \n
-Provenance & Lineage — Lineage graph, version timeline, dataset metadata \n
-Explainability — Feature importance, SHAP values, prediction waterfall, confidence gauge \n
-Experiments — Full experiment tracker with search and filtering \n
-Settings — Profile, notifications, API keys
-
