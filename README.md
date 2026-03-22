@@ -39,7 +39,7 @@ Data → Modeling → Trust & Governance
 ✅ Real Profile Management — Settings page loads/saves your actual profile data.
 
 
-
+Updates in the Working and Implementation detailing with it.
 Done with UI and research 
 
 
