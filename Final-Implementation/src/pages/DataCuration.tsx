@@ -22,12 +22,11 @@ const driftData = [
   { day: "Sun", baseline: 0.02, current: 0.09 },
 ];
 
-const schemaRows = [
-  { column: "customer_id", v1: "int64", v2: "int64", change: "none" },
-  { column: "age", v1: "float32", v2: "int32", change: "type" },
-  { column: "income", v1: "float64", v2: "float64", change: "none" },
-  { column: "credit_score", v1: "—", v2: "int32", change: "added" },
-  { column: "region", v1: "string", v2: "category", change: "type" },
+const defaultSchemaRows = [
+  { column: "feature_1", v1: "float64", v2: "float64", change: "none" },
+  { column: "feature_2", v1: "float32", v2: "float64", change: "type" },
+  { column: "feature_3", v1: "int64", v2: "int64", change: "none" },
+  { column: "target", v1: "—", v2: "int32", change: "added" },
 ];
 
 const DataCuration = () => {
@@ -37,6 +36,8 @@ const DataCuration = () => {
   const createDataset = useCreateDataset();
   const uploadFile = useUploadDatasetFile();
   const { toast } = useToast();
+  
+  const [schemaRows, setSchemaRows] = useState(defaultSchemaRows);
 
   const handleFileUpload = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -68,6 +69,14 @@ const DataCuration = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader title="Data Curation" description="Upload, clean, and engineer your datasets">
+        <Button size="sm" variant="outline" className="mr-2" onClick={async () => {
+          try {
+            await fetch("http://127.0.0.1:8000/curate/demo123", { method: "POST" });
+            toast({ title: "Curation started" });
+          } catch(e) {
+            toast({ title: "Curation failed", variant: "destructive" });
+          }
+        }}>Run Curation</Button>
         <Button size="sm" onClick={() => fileInputRef.current?.click()} disabled={uploading}>
           <Upload className="h-4 w-4 mr-2" />{uploading ? "Uploading..." : "Upload Dataset"}
         </Button>
@@ -194,7 +203,7 @@ const DataCuration = () => {
         {/* Schema Comparison */}
         <div className="bg-card rounded-lg border border-border">
           <div className="p-4 border-b border-border">
-            <h3 className="text-sm font-semibold text-card-foreground">Schema Comparison (v2.2 → v2.3)</h3>
+            <h3 className="text-sm font-semibold text-card-foreground">Schema Curation Monitor</h3>
           </div>
           <Table>
             <TableHeader>

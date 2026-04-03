@@ -3,12 +3,12 @@ import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const lineageNodes = [
-  { label: "Raw CSV", type: "data", detail: "financial_raw.csv" },
-  { label: "Versioned v2.3", type: "version", detail: "hash: a3f8c2d" },
-  { label: "Feature Eng.", type: "transform", detail: "15 features" },
-  { label: "CatBoost v2", type: "model", detail: "96.1% acc" },
-  { label: "Eval Metrics", type: "metric", detail: "F1: 95.3%" },
+const initialLineageNodes = [
+  { label: "Raw Dataset", type: "data", detail: "Waiting for upload..." },
+  { label: "Version Check", type: "version", detail: "hash: pending" },
+  { label: "Feature Eng.", type: "transform", detail: "pending" },
+  { label: "AutoML Model", type: "model", detail: "pending" },
+  { label: "Eval Metrics", type: "metric", detail: "pending" },
 ];
 
 const nodeColors: Record<string, string> = {
@@ -20,24 +20,59 @@ const nodeColors: Record<string, string> = {
 };
 
 const timeline = [
-  { version: "v2.3", date: "Feb 15, 2026", author: "alice@ml.co", changes: "Added credit_score, fixed nulls in income", hash: "a3f8c2d" },
-  { version: "v2.2", date: "Feb 10, 2026", author: "bob@ml.co", changes: "Outlier removal on age column", hash: "e7b1f4a" },
-  { version: "v2.1", date: "Feb 5, 2026", author: "alice@ml.co", changes: "Region encoding to category type", hash: "c9d2e3f" },
-  { version: "v2.0", date: "Jan 28, 2026", author: "carol@ml.co", changes: "Major schema revision, 5 new columns", hash: "b4a6d8c" },
-  { version: "v1.5", date: "Jan 15, 2026", author: "bob@ml.co", changes: "Null handling improvement", hash: "f1e5g7h" },
+  { version: "v1.0", date: "Today", author: "system", changes: "Awaiting dataset...", hash: "0000000" }
 ];
 
-const metadata = [
-  { key: "Dataset", value: "financial_v2.3" },
-  { key: "Hash", value: "a3f8c2d9e4b1" },
-  { key: "Rows", value: "1,248,356" },
-  { key: "Columns", value: "15" },
-  { key: "Size", value: "342 MB" },
-  { key: "Created", value: "Feb 15, 2026" },
-  { key: "Format", value: "Parquet" },
+const initialMetadata = [
+  { key: "Dataset", value: "Pending" },
+  { key: "Hash", value: "Pending" },
+  { key: "Rows", value: "Pending" },
+  { key: "Columns", value: "Pending" },
+  { key: "Created", value: "Pending" },
 ];
+
+import { useEffect, useState } from "react";
 
 const Provenance = () => {
+  const [timelineState, setTimelineState] = useState(timeline);
+  const [lineageState, setLineageState] = useState(initialLineageNodes);
+  const [metadataState, setMetadataState] = useState(initialMetadata);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/provenance")
+      .then(res => res.json())
+      .then(data => {
+         if(data && data.length > 0) {
+            const mapped = [...data].reverse().map((d: any, i: number) => ({
+                version: `v${data.length - i}.0`,
+                date: d.timestamp ? new Date(d.timestamp).toLocaleDateString() : "Today",
+                author: "system",
+                changes: `AutoML Run on ${d.dataset_name} | Acc: ${d.test_accuracy ? (d.test_accuracy*100).toFixed(1)+'%' : 'N/A'}`,
+                hash: d.run_id ? d.run_id.substring(0, 7) : "unknown"
+            }));
+            setTimelineState(mapped);
+
+            const latest = data[data.length - 1];
+            setLineageState([
+              { label: "Raw Data", type: "data", detail: latest.dataset_name },
+              { label: `Versioned`, type: "version", detail: `hash: ${latest.run_id?.substring(0,6) || "none"}` },
+              { label: "Feature Eng.", type: "transform", detail: "Auto Cleaned" },
+              { label: "AutoML Tune", type: "model", detail: "Best Model Saved" },
+              { label: "Eval Metrics", type: "metric", detail: latest.test_accuracy ? `Acc: ${(latest.test_accuracy*100).toFixed(1)}%` : "Complete" },
+            ]);
+
+            setMetadataState([
+              { key: "Dataset", value: latest.dataset_name },
+              { key: "Run ID", value: latest.run_id },
+              { key: "Rows Total", value: latest.data_shapes?.before_rows ? String(latest.data_shapes.before_rows) : "N/A" },
+              { key: "Split Train", value: latest.data_shapes?.X_train ? String(latest.data_shapes.X_train[0]) : "N/A" },
+              { key: "Created", value: latest.timestamp ? new Date(latest.timestamp).toLocaleTimeString() : "Today" },
+            ]);
+         }
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader title="Provenance & Lineage" description="Track data origins and transformations">
@@ -48,13 +83,13 @@ const Provenance = () => {
       <div className="bg-card rounded-lg border border-border p-6">
         <h3 className="text-sm font-semibold text-card-foreground mb-5">Data Lineage Graph</h3>
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          {lineageNodes.map((node, i) => (
+          {lineageState.map((node, i) => (
             <div key={node.label} className="flex items-center gap-3">
               <div className={`px-4 py-3 rounded-lg border text-center ${nodeColors[node.type]}`}>
                 <p className="text-xs font-semibold">{node.label}</p>
                 <p className="text-[10px] opacity-70 mt-0.5">{node.detail}</p>
               </div>
-              {i < lineageNodes.length - 1 && <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />}
+              {i < lineageState.length - 1 && <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />}
             </div>
           ))}
         </div>
@@ -68,11 +103,11 @@ const Provenance = () => {
             <h3 className="text-sm font-semibold text-card-foreground">Version Timeline</h3>
           </div>
           <div className="space-y-4">
-            {timeline.map((v, i) => (
-              <div key={v.version} className="flex gap-4">
+            {timelineState.map((v, i) => (
+              <div key={v.hash + i} className="flex gap-4">
                 <div className="flex flex-col items-center">
                   <div className={`h-3 w-3 rounded-full border-2 ${i === 0 ? "bg-primary border-primary" : "bg-card border-muted-foreground/30"}`} />
-                  {i < timeline.length - 1 && <div className="w-px flex-1 bg-border" />}
+                  {i < timelineState.length - 1 && <div className="w-px flex-1 bg-border" />}
                 </div>
                 <div className="pb-4 flex-1">
                   <div className="flex items-center gap-2 mb-1">
@@ -97,7 +132,7 @@ const Provenance = () => {
             <h3 className="text-sm font-semibold text-card-foreground">Dataset Metadata</h3>
           </div>
           <div className="space-y-2">
-            {metadata.map((m) => (
+            {metadataState.map((m) => (
               <div key={m.key} className="flex items-center justify-between py-2 px-3 rounded-md bg-muted/50">
                 <span className="text-xs text-muted-foreground">{m.key}</span>
                 <span className="text-xs font-medium font-mono">{m.value}</span>
@@ -105,7 +140,7 @@ const Provenance = () => {
             ))}
           </div>
           <Button variant="outline" size="sm" className="w-full mt-4">
-            <ArrowLeftRight className="h-3 w-3 mr-2" />Compare v2.2 vs v2.3
+            <ArrowLeftRight className="h-3 w-3 mr-2" />Compare Active Source
           </Button>
         </div>
       </div>
