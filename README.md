@@ -35,4 +35,17 @@ Data → Modeling → Trust & Governance
 
 ✅ File Uploads — Data Curation page supports drag-and-drop and click-to-upload for dataset files (CSV, Parquet, JSON). Files are stored securely in Cloud storage, and a table shows your uploaded datasets.
 
+
 ✅ Real Profile Management — Settings page loads/saves your actual profile data.
+
+
+Updates in the Working and Implementation detailing with it.
+Done with UI and research 
+
+
+Done with one feature 
+
+Contributors Added
+
+Starting with Final Prototype 
+ And final project reports 

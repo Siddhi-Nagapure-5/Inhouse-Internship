@@ -1,0 +1,1 @@
+{"feature_names": ["sex", "cp", "chol", "thalach", "exang", "oldpeak", "slope", "ca", "thal"], "target": "target"}
