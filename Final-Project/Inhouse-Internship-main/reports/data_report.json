@@ -1,0 +1,19 @@
+{
+    "total_rows": 768,
+    "total_columns": 9,
+    "missing_values": {
+        "Pregnancies": 0,
+        "Glucose": 0,
+        "BloodPressure": 0,
+        "SkinThickness": 0,
+        "Insulin": 0,
+        "BMI": 0,
+        "DiabetesPedigreeFunction": 0,
+        "Age": 0,
+        "Outcome": 0
+    },
+    "class_distribution": {
+        "0": 500,
+        "1": 268
+    }
+}

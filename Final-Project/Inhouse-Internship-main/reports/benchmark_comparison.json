@@ -1,0 +1,18 @@
+[
+    {
+        "timestamp": "2026-04-04 01:27:01",
+        "dataset": "data/bench_titanic.csv",
+        "features_matched": 6,
+        "features_total": 6,
+        "original_performance": {
+            "accuracy": 0.8189655172413793,
+            "f1_score": 0.8162619873495205,
+            "roc_auc": 0.8627236217597665
+        },
+        "benchmark_performance": {
+            "accuracy": 0.7564825253664036,
+            "f1_score": 0.7548615865699306,
+            "roc_auc": 0.8077757888869834
+        }
+    }
+]

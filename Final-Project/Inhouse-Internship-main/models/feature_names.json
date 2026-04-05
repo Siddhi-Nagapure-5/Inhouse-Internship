@@ -1,0 +1,1 @@
+{"feature_names": ["Pregnancies", "Glucose", "Insulin", "BMI", "DiabetesPedigreeFunction", "Age"], "target": "Outcome"}
